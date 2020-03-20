@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.lushstar.ladder.spring.boot.autoconfigure.RestTemplateAutoConfiguration
