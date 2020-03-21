@@ -199,7 +199,7 @@ public class RestTemplateHttpClientFactory implements RestTemplateFactory {
                     log.info("run idleConnectionMonitor - Http Client Connection manager {} is not initialised", poolName);
                 }
             }
-        }, restTemplateProperties.getInitialDelay(), restTemplateProperties.getDelay(), TimeUnit.SECONDS);
+        }, restTemplateProperties.getInitialDelay(), restTemplateProperties.getDelay(), TimeUnit.MILLISECONDS);
     }
 
     /**

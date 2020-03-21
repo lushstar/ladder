@@ -27,10 +27,10 @@ public class RestTemplateProperties {
     private Integer socketTimeout = 5000;
 
     /**
-     * 允许连接保持的活动时间 60s, 默认 -1,
-     * 此参数值参考自 tomcat 对 Http1.1 协议中的默认值
+     * 允许连接保持的活动时间 15分钟, 默认 Long.MAX_VALUE
+     * 此参数值参考 spring cloud feign timeToLive 属性
      */
-    private Integer keeAliveTimeMillis = 60000;
+    private Integer keeAliveTimeMillis = 900000;
 
     /**
      * 关闭空闲超过 30s 的连接
