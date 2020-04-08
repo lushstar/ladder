@@ -10,8 +10,8 @@
     <version>1.0.0-SNAPSHOT</version>
 
     <modules>
-        <module>ladder-rest-template</module>
-        <module>ladder-spring-boot-autoconfigure</module>
+        <module>ladder-spring-boot-starter</module>
+        <module>web-spring-boot-autoconfigure</module>
     </modules>
 
     <dependencyManagement>
@@ -25,17 +25,32 @@
             </dependency>
             <dependency>
                 <groupId>com.lushstar.ladder</groupId>
-                <artifactId>ladder-rest-template</artifactId>
+                <artifactId>web-spring-boot-autoconfigure</artifactId>
                 <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>Finchley.SR2</version>
-                <type>pom</type>
-                <scope>import</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
+
+    <build>
+        <plugins>
+            <!-- source -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.3</version>
+                <configuration>
+                    <attach>true</attach>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
