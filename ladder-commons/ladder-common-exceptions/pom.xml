@@ -3,19 +3,24 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>ladder-parent</artifactId>
+        <artifactId>ladder-commons</artifactId>
         <groupId>com.lushstar.ladder</groupId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>ladder-spring-boot-starter</artifactId>
+    <artifactId>ladder-common-exceptions</artifactId>
 
     <dependencies>
         <dependency>
-            <groupId>com.lushstar.ladder</groupId>
-            <artifactId>web-spring-boot-autoconfigure</artifactId>
-            <version>${project.version}</version>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
