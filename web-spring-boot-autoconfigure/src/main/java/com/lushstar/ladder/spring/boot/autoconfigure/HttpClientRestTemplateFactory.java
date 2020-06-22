@@ -35,9 +35,9 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 public class HttpClientRestTemplateFactory implements RestTemplateFactory {
 
-    private RestTemplateProperties restTemplateProperties;
+    private final RestTemplateProperties restTemplateProperties;
 
-    private KeyStoreProperties keyStoreProperties;
+    private final KeyStoreProperties keyStoreProperties;
 
     private CloseableHttpClient httpClient = null;
 
@@ -113,7 +113,7 @@ public class HttpClientRestTemplateFactory implements RestTemplateFactory {
         SSLConnectionSocketFactory sslConnectionSocketFactory = new SSLConnectionSocketFactory(
                 sslParams.sslContext, new String[]{"TLSv1"}, null, SSLConnectionSocketFactory.getDefaultHostnameVerifier());
         HttpClientConnectionManager connectionManager = this.getPoolingHttpClientConnectionManager(sslConnectionSocketFactory);
-        log.info("Pooling Connection Manager {} Initialisation success");
+        log.info("Pooling Connection Manager Initialisation success");
         return connectionManager;
     }
 
@@ -141,13 +141,13 @@ public class HttpClientRestTemplateFactory implements RestTemplateFactory {
             @Override
             public void run() {
                 if (poolingConnectionManager != null) {
-                    log.info("run idleConnectionMonitor - Closing {} expired and idle connections...");
+                    log.info("run idleConnectionMonitor - Closing expired and idle connections...");
                     // 关闭过期连接
                     poolingConnectionManager.closeExpiredConnections();
                     // 关闭空闲连接
                     poolingConnectionManager.closeIdleConnections(restTemplateProperties.getIdleTimeout(), TimeUnit.SECONDS);
                 } else {
-                    log.info("run idleConnectionMonitor - Http Client Connection manager {} is not initialised");
+                    log.info("run idleConnectionMonitor - Http Client Connection manager is not initialised");
                 }
             }
         }, restTemplateProperties.getInitialDelay(), restTemplateProperties.getDelay(), TimeUnit.SECONDS);

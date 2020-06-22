@@ -103,7 +103,7 @@ public class SslParamsUtils {
     }
 
     public static class HostnameVerifierCustomizer implements HostnameVerifier {
-        private KeyStoreProperties keyStoreProperties;
+        private final KeyStoreProperties keyStoreProperties;
 
         public HostnameVerifierCustomizer(KeyStoreProperties keyStoreProperties) {
             this.keyStoreProperties = keyStoreProperties;
@@ -125,8 +125,8 @@ public class SslParamsUtils {
     }
 
     public static class MyTrustManager implements X509TrustManager {
-        private X509TrustManager defaultTrustManager;
-        private X509TrustManager localTrustManager;
+        private final X509TrustManager defaultTrustManager;
+        private final X509TrustManager localTrustManager;
 
         public MyTrustManager(X509TrustManager localTrustManager) throws NoSuchAlgorithmException, KeyStoreException {
             TrustManagerFactory var4 = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());

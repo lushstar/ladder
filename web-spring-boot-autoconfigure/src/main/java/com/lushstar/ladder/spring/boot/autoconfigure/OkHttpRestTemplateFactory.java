@@ -22,9 +22,9 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 public class OkHttpRestTemplateFactory implements RestTemplateFactory {
 
-    private RestTemplateProperties restTemplateProperties;
+    private final RestTemplateProperties restTemplateProperties;
 
-    private KeyStoreProperties keyStoreProperties;
+    private final KeyStoreProperties keyStoreProperties;
 
     private OkHttpClient okHttpClient;
 
