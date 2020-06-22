@@ -13,7 +13,7 @@
         <module>ladder-bom</module>
         <module>ladder-dependencies-bom</module>
         <module>ladder-commons</module>
-        <module>web-spring-boot-autoconfigure</module>
+        <module>ladder-spring-boot-autoconfigure</module>
         <module>ladder-spring-boot-starter</module>
     </modules>
 

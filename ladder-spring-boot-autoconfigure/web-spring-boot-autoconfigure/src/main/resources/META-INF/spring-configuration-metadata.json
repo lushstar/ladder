@@ -2,13 +2,13 @@
   "groups": [
     {
       "name": "ladder.http.client",
-      "type": "com.lushstar.ladder.spring.boot.autoconfigure.RestTemplateProperties",
-      "sourceType": "com.lushstar.ladder.spring.boot.autoconfigure.RestTemplateProperties"
+      "type": "com.lushstar.ladder.web.spring.boot.autoconfigure.RestTemplateProperties",
+      "sourceType": "com.lushstar.ladder.web.spring.boot.autoconfigure.RestTemplateProperties"
     },
     {
       "name": "ladder.http.keystore",
-      "type": "com.lushstar.ladder.spring.boot.autoconfigure.KeyStoreProperties",
-      "sourceType": "com.lushstar.ladder.spring.boot.autoconfigure.KeyStoreProperties"
+      "type": "com.lushstar.ladder.web.spring.boot.autoconfigure.KeyStoreProperties",
+      "sourceType": "com.lushstar.ladder.web.spring.boot.autoconfigure.KeyStoreProperties"
     }
   ],
   "properties": [
@@ -16,121 +16,121 @@
       "name": "ladder.http.client.connect-timeout",
       "type": "java.lang.Integer",
       "description": "连接建立成功的超时时间 5s, 否则无限大",
-      "sourceType": "com.lushstar.ladder.spring.boot.autoconfigure.RestTemplateProperties",
+      "sourceType": "com.lushstar.ladder.web.spring.boot.autoconfigure.RestTemplateProperties",
       "defaultValue": 5000
     },
     {
       "name": "ladder.http.client.connection-request-timeout",
       "type": "java.lang.Integer",
       "description": "设置从连接池获取一个连接的请求超时时间(连接池中连接不够用的时候等待超时时间) 此参数值无考究对象",
-      "sourceType": "com.lushstar.ladder.spring.boot.autoconfigure.RestTemplateProperties",
+      "sourceType": "com.lushstar.ladder.web.spring.boot.autoconfigure.RestTemplateProperties",
       "defaultValue": 5000
     },
     {
       "name": "ladder.http.client.default-max-per-route",
       "type": "java.lang.Integer",
       "description": "每一路路由的最大数量 此参数值参考 spring cloud netflix zuul",
-      "sourceType": "com.lushstar.ladder.spring.boot.autoconfigure.RestTemplateProperties",
+      "sourceType": "com.lushstar.ladder.web.spring.boot.autoconfigure.RestTemplateProperties",
       "defaultValue": 20
     },
     {
       "name": "ladder.http.client.delay",
       "type": "java.lang.Integer",
       "description": "每次任务完成后的延时时间 10s",
-      "sourceType": "com.lushstar.ladder.spring.boot.autoconfigure.RestTemplateProperties",
+      "sourceType": "com.lushstar.ladder.web.spring.boot.autoconfigure.RestTemplateProperties",
       "defaultValue": 10000
     },
     {
       "name": "ladder.http.client.idle-timeout",
       "type": "java.lang.Integer",
       "description": "关闭空闲超过 30s 的连接 此参数值参考 HttpClient 官网例子",
-      "sourceType": "com.lushstar.ladder.spring.boot.autoconfigure.RestTemplateProperties",
+      "sourceType": "com.lushstar.ladder.web.spring.boot.autoconfigure.RestTemplateProperties",
       "defaultValue": 30
     },
     {
       "name": "ladder.http.client.initial-delay",
       "type": "java.lang.Integer",
       "description": "线程池初始延时时间 10s",
-      "sourceType": "com.lushstar.ladder.spring.boot.autoconfigure.RestTemplateProperties",
+      "sourceType": "com.lushstar.ladder.web.spring.boot.autoconfigure.RestTemplateProperties",
       "defaultValue": 10000
     },
     {
       "name": "ladder.http.client.kee-alive-time-millis",
       "type": "java.lang.Integer",
       "description": "允许连接保持的活动时间 15分钟, 默认 Long.MAX_VALUE 此参数值参考 spring cloud feign timeToLive 属性",
-      "sourceType": "com.lushstar.ladder.spring.boot.autoconfigure.RestTemplateProperties",
+      "sourceType": "com.lushstar.ladder.web.spring.boot.autoconfigure.RestTemplateProperties",
       "defaultValue": 900000
     },
     {
       "name": "ladder.http.client.keep-rest-template",
       "type": "java.lang.Boolean",
       "description": "是否保留 Spring 中的原生 restTemplate 组件, 如果不保留, 那么容器中 beanName 为 restTemplate 的会被 ladderRestTemplate 替换 前提条件是容器中必须要有 ladderRestTemplate 组件才行 true 表示保留, 但不建议保留",
-      "sourceType": "com.lushstar.ladder.spring.boot.autoconfigure.RestTemplateProperties",
+      "sourceType": "com.lushstar.ladder.web.spring.boot.autoconfigure.RestTemplateProperties",
       "defaultValue": true
     },
     {
       "name": "ladder.http.client.ladder-rest-template",
       "type": "java.lang.Boolean",
       "description": "容器中是否要开启 ladderRestTemplate, 默认开启，即会为容器中自动注入一个 ladderRestTemplate 以便用户切换 适用于这种情况：以前的代码使用了 restTemplate 但是为避免风险不敢使用下面的属性替换, 但在新的代码中又想使用 ladderRestTemplate",
-      "sourceType": "com.lushstar.ladder.spring.boot.autoconfigure.RestTemplateProperties",
+      "sourceType": "com.lushstar.ladder.web.spring.boot.autoconfigure.RestTemplateProperties",
       "defaultValue": true
     },
     {
       "name": "ladder.http.client.max-total",
       "type": "java.lang.Integer",
       "description": "总共连接数 此参数值参考 spring cloud netflix zuul",
-      "sourceType": "com.lushstar.ladder.spring.boot.autoconfigure.RestTemplateProperties",
+      "sourceType": "com.lushstar.ladder.web.spring.boot.autoconfigure.RestTemplateProperties",
       "defaultValue": 200
     },
     {
       "name": "ladder.http.client.socket-timeout",
       "type": "java.lang.Integer",
       "description": "读取数据的响应超时时间 5s, 否则无限大",
-      "sourceType": "com.lushstar.ladder.spring.boot.autoconfigure.RestTemplateProperties",
+      "sourceType": "com.lushstar.ladder.web.spring.boot.autoconfigure.RestTemplateProperties",
       "defaultValue": 5000
     },
     {
       "name": "ladder.http.client.type",
       "type": "java.lang.String",
       "description": "底层使用的客户端技术",
-      "sourceType": "com.lushstar.ladder.spring.boot.autoconfigure.RestTemplateProperties",
+      "sourceType": "com.lushstar.ladder.web.spring.boot.autoconfigure.RestTemplateProperties",
       "defaultValue": "httpClient"
     },
     {
       "name": "ladder.http.keystore.client-password",
       "type": "java.lang.String",
       "description": "服务端信任客户端的证书秘钥 注意和 clientPath 为一组配置",
-      "sourceType": "com.lushstar.ladder.spring.boot.autoconfigure.KeyStoreProperties"
+      "sourceType": "com.lushstar.ladder.web.spring.boot.autoconfigure.KeyStoreProperties"
     },
     {
       "name": "ladder.http.keystore.client-path",
       "type": "java.lang.String",
       "description": "服务端信任客户端的证书存储路径",
-      "sourceType": "com.lushstar.ladder.spring.boot.autoconfigure.KeyStoreProperties"
+      "sourceType": "com.lushstar.ladder.web.spring.boot.autoconfigure.KeyStoreProperties"
     },
     {
       "name": "ladder.http.keystore.client-type",
       "type": "java.lang.String",
       "description": "服务端信任客户端的证书格式 用户服务端校验客户端携带的证书，如微信支付场景",
-      "sourceType": "com.lushstar.ladder.spring.boot.autoconfigure.KeyStoreProperties"
+      "sourceType": "com.lushstar.ladder.web.spring.boot.autoconfigure.KeyStoreProperties"
     },
     {
       "name": "ladder.http.keystore.host-names",
       "type": "java.lang.String[]",
       "description": "服务端信任地址 在使用 OkHttp 信任服务端证书的情况下, 如果仍然报错：SSLPeerUnverifiedException: Hostname xxx verified，可以尝试把 xxx 域名配置在此属性中",
-      "sourceType": "com.lushstar.ladder.spring.boot.autoconfigure.KeyStoreProperties"
+      "sourceType": "com.lushstar.ladder.web.spring.boot.autoconfigure.KeyStoreProperties"
     },
     {
       "name": "ladder.http.keystore.trust-path",
       "type": "java.lang.String",
       "description": "客户端信任服务端证书的存储地址, 只要公钥 如果是公钥 + 私钥混合存储，可用下面命令提取出公钥 keytool -export -alias wsria[别名] -keystore wsriakey[公钥+私钥文件] -storepass 123456[秘钥] -file scert.cer[公钥文件]",
-      "sourceType": "com.lushstar.ladder.spring.boot.autoconfigure.KeyStoreProperties"
+      "sourceType": "com.lushstar.ladder.web.spring.boot.autoconfigure.KeyStoreProperties"
     },
     {
       "name": "ladder.http.keystore.trust-type",
       "type": "java.lang.String",
       "description": "客户端信任服务端的证书格式, 默认为 jks, 即 Java Key Store 用于服务端自己颁发的授权证书场景，未经过 CA 认证：如 Tomcat 搭建自己的 Https 服务",
-      "sourceType": "com.lushstar.ladder.spring.boot.autoconfigure.KeyStoreProperties"
+      "sourceType": "com.lushstar.ladder.web.spring.boot.autoconfigure.KeyStoreProperties"
     }
   ],
   "hints": [

@@ -9,14 +9,11 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>ladder-spring-boot-starter</artifactId>
+    <artifactId>ladder-spring-boot-autoconfigure</artifactId>
+    <packaging>pom</packaging>
 
-    <dependencies>
-        <dependency>
-            <groupId>com.lushstar.ladder</groupId>
-            <artifactId>ladder-spring-boot-autoconfigure</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-    </dependencies>
+    <modules>
+        <module>web-spring-boot-autoconfigure</module>
+    </modules>
 
 </project>

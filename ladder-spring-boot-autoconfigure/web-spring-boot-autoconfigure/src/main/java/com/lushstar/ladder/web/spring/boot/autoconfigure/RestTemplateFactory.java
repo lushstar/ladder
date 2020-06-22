@@ -1,4 +1,4 @@
-package com.lushstar.ladder.spring.boot.autoconfigure;
+package com.lushstar.ladder.web.spring.boot.autoconfigure;
 
 import org.springframework.web.client.RestTemplate;
 

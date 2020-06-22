@@ -1,4 +1,4 @@
-package com.lushstar.ladder.spring.boot.autoconfigure;
+package com.lushstar.ladder.web.spring.boot.autoconfigure;
 
 import org.springframework.util.StringUtils;
 
@@ -83,7 +83,7 @@ public class SslParamsUtils {
         String trustPath = keyStoreProperties.getTrustPath();
         if (!StringUtils.isEmpty(trustPath)) {
             InputStream certificates = new FileInputStream(new File(trustPath));
-            trustManagers = SslParamsUtils.prepareTrustManager(keyStoreProperties.getTrustType(), certificates);
+            trustManagers = prepareTrustManager(keyStoreProperties.getTrustType(), certificates);
         }
         String clientPath = keyStoreProperties.getClientPath();
         String password = keyStoreProperties.getClientPassword();
