@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.github.lushstar.ladder.exceptions.spring.boot.autoconfigure.LadderExceptionsAutoConfiguration

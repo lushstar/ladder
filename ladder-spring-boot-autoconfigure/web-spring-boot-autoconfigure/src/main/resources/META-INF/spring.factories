@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.lushstar.ladder.web.spring.boot.autoconfigure.LadderRestTemplateAutoConfiguration
+com.github.lushstar.ladder.web.spring.boot.autoconfigure.LadderRestTemplateAutoConfiguration

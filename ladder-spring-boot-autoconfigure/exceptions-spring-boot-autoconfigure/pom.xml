@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>web-spring-boot-autoconfigure</artifactId>
+    <artifactId>exceptions-spring-boot-autoconfigure</artifactId>
 
     <dependencies>
         <dependency>
@@ -23,9 +23,8 @@
             <optional>true</optional>
         </dependency>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-configuration-processor</artifactId>
-            <optional>true</optional>
+            <groupId>com.github.lushstar</groupId>
+            <artifactId>ladder-common-exceptions</artifactId>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -34,16 +33,6 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpclient</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.squareup.okhttp3</groupId>
-            <artifactId>okhttp</artifactId>
-            <scope>provided</scope>
         </dependency>
     </dependencies>
 
