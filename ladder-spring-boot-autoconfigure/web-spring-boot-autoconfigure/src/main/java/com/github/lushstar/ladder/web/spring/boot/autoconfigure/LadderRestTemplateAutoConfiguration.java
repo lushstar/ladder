@@ -1,12 +1,11 @@
 package com.github.lushstar.ladder.web.spring.boot.autoconfigure;
 
 import lombok.extern.slf4j.Slf4j;
+import okhttp3.OkHttpClient;
+import org.apache.http.impl.client.CloseableHttpClient;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.boot.autoconfigure.condition.*;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -58,46 +57,42 @@ public class LadderRestTemplateAutoConfiguration implements EnvironmentAware, Ap
 
     private Environment environment;
 
-    /**
-     * 默认规则：
-     * 用户自定义 > ladder.http.client.httpClient(默认) > ladder.http.client.okHttp
-     *
-     * @param restTemplateProperties {@link RestTemplateProperties}
-     * @param keyStoreProperties     {@link KeyStoreProperties}
-     * @return {@link RestTemplateFactory}
-     */
-    @Bean
-    @ConditionalOnMissingBean
-    @ConditionalOnProperty(prefix = "ladder.http.client", name = "type", havingValue = "httpClient", matchIfMissing = true)
-    public RestTemplateFactory httpClientRestTemplateFactory(RestTemplateProperties restTemplateProperties, KeyStoreProperties keyStoreProperties) {
-        log.info("current project has been inject [HttpClientRestTemplateFactory] component");
-        return new HttpClientRestTemplateFactory(restTemplateProperties, keyStoreProperties);
+    @Configuration
+    @ConditionalOnClass({CloseableHttpClient.class})
+    public static class HttpClientRestTemplateFactoryConfig {
+        /**
+         * 默认规则：
+         * 用户自定义 > ladder.http.client.httpClient(默认) > ladder.http.client.okHttp
+         *
+         * @param restTemplateProperties {@link RestTemplateProperties}
+         * @param keyStoreProperties     {@link KeyStoreProperties}
+         * @return {@link RestTemplateFactory}
+         */
+        @Bean
+        @ConditionalOnMissingBean
+        @ConditionalOnProperty(prefix = "ladder.http.client", name = "type", havingValue = "httpClient", matchIfMissing = true)
+        public RestTemplateFactory httpClientRestTemplateFactory(RestTemplateProperties restTemplateProperties, KeyStoreProperties keyStoreProperties) {
+            log.info("current project has been inject [HttpClientRestTemplateFactory] component");
+            return new HttpClientRestTemplateFactory(restTemplateProperties, keyStoreProperties);
+        }
     }
 
-    /**
-     * 需要开启 ladder.http.client.type=okHttp
-     *
-     * @param restTemplateProperties {@link RestTemplateProperties}
-     * @param keyStoreProperties     {@link KeyStoreProperties}
-     * @return {@link RestTemplateFactory}
-     */
-    @Bean
-    @ConditionalOnMissingBean
-    @ConditionalOnProperty(prefix = "ladder.http.client", name = "type", havingValue = "okHttp")
-    public RestTemplateFactory okHttpRestTemplateFactory(RestTemplateProperties restTemplateProperties, KeyStoreProperties keyStoreProperties) {
-        return new OkHttpRestTemplateFactory(restTemplateProperties, keyStoreProperties);
-    }
-
-    /**
-     * 当容器中不存在 beanName 为 restTemplate 的 bean 时, 就往容器中注入一个
-     *
-     * @param restTemplateFactory {@link RestTemplateFactory}
-     * @return {@link RestTemplate}
-     */
-    @Bean(REST_TEMPLATE_BEAN_NAME)
-    @ConditionalOnMissingBean(name = REST_TEMPLATE_BEAN_NAME)
-    public RestTemplate restTemplate(RestTemplateFactory restTemplateFactory) {
-        return this.wrapper(restTemplateFactory.createRestTemplate());
+    @Configuration
+    @ConditionalOnClass({OkHttpClient.class})
+    public static class OkHttpRestTemplateFactoryConfig {
+        /**
+         * 需要开启 ladder.http.client.type=okHttp
+         *
+         * @param restTemplateProperties {@link RestTemplateProperties}
+         * @param keyStoreProperties     {@link KeyStoreProperties}
+         * @return {@link RestTemplateFactory}
+         */
+        @Bean
+        @ConditionalOnMissingBean
+        @ConditionalOnProperty(prefix = "ladder.http.client", name = "type", havingValue = "okHttp")
+        public RestTemplateFactory okHttpRestTemplateFactory(RestTemplateProperties restTemplateProperties, KeyStoreProperties keyStoreProperties) {
+            return new OkHttpRestTemplateFactory(restTemplateProperties, keyStoreProperties);
+        }
     }
 
     /**
@@ -107,9 +102,23 @@ public class LadderRestTemplateAutoConfiguration implements EnvironmentAware, Ap
      * @return {@link RestTemplate}
      */
     @Bean(LADDER_REST_TEMPLATE_BEAN_NAME)
+    @ConditionalOnBean(RestTemplateFactory.class)
     @ConditionalOnMissingBean(name = LADDER_REST_TEMPLATE_BEAN_NAME)
     @ConditionalOnProperty(prefix = "ladder.http.client", name = "ladder-rest-template", havingValue = "true", matchIfMissing = true)
     public RestTemplate ladderRestTemplate(RestTemplateFactory restTemplateFactory) {
+        return this.wrapper(restTemplateFactory.createRestTemplate());
+    }
+
+    /**
+     * 当容器中不存在 beanName 为 restTemplate 的 bean 时, 就往容器中注入一个
+     *
+     * @param restTemplateFactory {@link RestTemplateFactory}
+     * @return {@link RestTemplate}
+     */
+    @Bean(REST_TEMPLATE_BEAN_NAME)
+    @ConditionalOnBean(RestTemplateFactory.class)
+    @ConditionalOnMissingBean(name = REST_TEMPLATE_BEAN_NAME)
+    public RestTemplate restTemplate(RestTemplateFactory restTemplateFactory) {
         return this.wrapper(restTemplateFactory.createRestTemplate());
     }
 
@@ -120,6 +129,7 @@ public class LadderRestTemplateAutoConfiguration implements EnvironmentAware, Ap
      * @return {@link RestTemplate}
      */
     @Bean(SSL_REST_TEMPLATE_BEAN_NAME)
+    @ConditionalOnBean(RestTemplateFactory.class)
     @ConditionalOnMissingBean(name = SSL_REST_TEMPLATE_BEAN_NAME)
     @ConditionalOnExpression("('${ladder.http.keystore.trust-path:null}'!='null') ||" +
             "('${ladder.http.keystore.client-path:null}'!='null' && '${ladder.http.keystore.client-password:null}'!='null')")
