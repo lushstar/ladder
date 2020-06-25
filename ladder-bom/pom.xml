@@ -54,6 +54,11 @@
                 <artifactId>exceptions-spring-boot-autoconfigure</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.github.lushstar.ladder</groupId>
+                <artifactId>ladder-spring-boot-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
