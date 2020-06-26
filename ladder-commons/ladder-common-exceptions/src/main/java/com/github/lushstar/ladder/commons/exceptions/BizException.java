@@ -26,6 +26,7 @@ public class BizException extends RuntimeException {
 
     public BizException(Long code, String message) {
         super(message);
+        this.code = code;
         this.message = message;
     }
 
