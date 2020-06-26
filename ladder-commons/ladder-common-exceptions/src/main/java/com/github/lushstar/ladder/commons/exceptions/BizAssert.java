@@ -1,5 +1,7 @@
 package com.github.lushstar.ladder.commons.exceptions;
 
+import java.util.Collection;
+
 /**
  * <p>description : BizAssert，此类用于判断是否为空，是否包含，字符串是否有值等等，所有的通用校验操作都应该在这里扩展
  *
@@ -82,6 +84,30 @@ public interface BizAssert {
             }
         }
         throw newException(args);
+    }
+
+    /**
+     * 判断集合为空
+     *
+     * @param collection 校验对象
+     * @param args       用于格式化异常信息的动态入参
+     */
+    default void isEmpty(Collection<?> collection, Object... args) {
+        if (!collection.isEmpty()) {
+            throw newException(args);
+        }
+    }
+
+    /**
+     * 判断集合不为空
+     *
+     * @param collection 校验对象
+     * @param args       用于格式化异常信息的动态入参
+     */
+    default void notEmpty(Collection<?> collection, Object... args) {
+        if (collection.isEmpty()) {
+            throw newException(args);
+        }
     }
 
 }
