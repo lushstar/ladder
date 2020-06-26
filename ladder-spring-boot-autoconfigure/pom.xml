@@ -15,6 +15,7 @@
     <modules>
         <module>web-spring-boot-autoconfigure</module>
         <module>exceptions-spring-boot-autoconfigure</module>
+        <module>orika-spring-boot-autoconfigure</module>
     </modules>
 
 </project>

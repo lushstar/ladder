@@ -59,6 +59,11 @@
                 <artifactId>ladder-spring-boot-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.github.lushstar.ladder</groupId>
+                <artifactId>orika-spring-boot-autoconfigure</artifactId>
+                <version>${project.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
